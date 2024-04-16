@@ -1,0 +1,9 @@
+<h4>{{ "@for" }} Directive Example</h4>
+ 
+  <div class="d-flex flex-wrap text-nowrap gap-2">
+    <!-- στο for-directive-component.ts το έχουμε ονομάσει users (= data): -->
+    @for (user of users; track user) {
+      <!-- το παρακάτω είναι το person-table-component: -->
+      <app-person-table [person]="user"></app-person-table>
+    }
+</div>

@@ -1,0 +1,33 @@
+<h4>Event Bind Example</h4>
+
+<div class="d-flex flex-column gap-2 w-25 mb-5">
+  
+  <div class="d-flex gap-2 align-items-center">
+    <!-- Button: - , αφαιρεί κατά ένα -->
+    <button class="btn btn-primary btn-sm flex-grow-1" (click)="decrementTimes()">-</button>
+    <!-- ο μετρητής: -->
+    <span>{{ times }}</span>
+     <!-- Button: + , προσθέτει ένα -->
+    <button class="btn btn-primary btn-sm flex-grow-1" 
+           (click)="incrementTimes()">+</button>
+    <!-- <span>{{ times }}</span> -->
+  </div>
+   <!-- Button: Reset , μηδενίζει τον μετρητή -->
+  <button class="btn btn-primary btn-sm" (click)="resetTimes()">Reset</button>
+
+  <div class="mt-2 mb-2 d-flex flex-column gap-2 w-250">
+    <!-- είναι ένα πεδίο κάτω από το Reset, στο οποίο γράφουμε κείμενο -->
+    <!-- βλέπουμε ότι στο onUserInput του περνάμε το event, αυτό γιατί θέλουμε έτσι να πάρουμε το text που έγραψε ο χρήστης στο πεδίο και να το εμφανίσουμε αμέσως από κάτω (στο span) -->
+    <input type="text" class="form-control" (input)="onUserInput($event)"/>
+    @if(!userInput) {
+      <span class="text-danger">No user input!</span>
+    } @else {
+      <span class="text-bg-info p-2 text-truncate">
+        {{ userInput }}
+      </span>
+    }
+  </div>
+
+</div>
+
+

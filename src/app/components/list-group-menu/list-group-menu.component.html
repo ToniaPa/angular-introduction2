@@ -1,0 +1,29 @@
+
+<!-- bootstrap παντού ! -->
+<div class="list-group">
+  <!-- menu =  έτσι έχουμε ονομάσει το μενού μας στο list-group-menu.component.ts -->
+  <!-- track = Keyword to control how the for loop compares items in the list to compute updates. -->
+  <!-- entry = έτσι το γράφουμε εμείς, μπορούμε να γράψουμε κάτι άλλο π.χ. item -->
+  <!-- routerLink = When applied to an element in a template, makes that element a link that initiates navigation to a route. Navigation opens one or more routed components in one or more <router-outlet> locations on the page. 
+    Given a route configuration [{ path: 'user/:name', component: UserCmp }], the following creates a static link to the route: 
+    <a routerLink="/user/bob">link to user component</a>-->
+    <!-- [routerLinkActive]="['active']" -> highlights the associated link -->
+  @for (entry of menu; track entry) { 
+    <!-- bootstrap κλάσεις: -->
+    <a class="list-group-item list-group-item-action text-truncate"
+        [routerLink]="entry.routerLink"
+        [routerLinkActive]="['active']" 
+    > {{ entry.text }} </a>
+  } 
+  <!-- The @for block repeatedly renders content of a block for each item in a collection. Collections can be any JavaScript iterable, but there are performance advantages of using a regular Array. You can optionally include an @empty section immediately after the @for block content. The content of the @empty block displays when there are no items.
+
+          Syntax:
+                @for (item of items; track item.name) {
+                    <li>{{ item.name }}</li>
+                } @empty {
+                    <li>There are no items.</li>
+                } 
+
+  The value of the track expression determines a key used to associate array items with the views in the DOM. Having clear indication of the item identity allows Angular to execute a minimal set of DOM operations as items are added, removed or moved in a collection.
+  -->
+</div>

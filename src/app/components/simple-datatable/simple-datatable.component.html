@@ -1,0 +1,35 @@
+
+<!-- //ΤΟ ΠΑΡΟΝ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΑΠΟ ΤA Simple-DataTable-Example & component-output-example & template-driven-form-example //
+//ΔΕΝ ΕΙΝΑΙ ΑΥΤΟΝΟΜΟ //
+// ΤΑ data ΔΕΝ ΠΕΡΝΑΝΕ ΕΔΩ ΑΛΛΑ ΣΤA simple-datatable-example & component-output-example & template-driven-form-example
+// ΕΔΩ ΔΗΛΩΝΟΥΜΕ ΤΗΝ ΜΟΡΦΗ ΤΩΝ data -->
+
+<table class="table table-bordered table-striped text-wrap">
+  <thead>
+    <tr class="align-middle text-center small">
+      <th role="button" (click)="sortData('givenName')">First Name {{ sortSign("givenName") }}</th>
+      <th role="button" (click)="sortData('surName')">Last Name {{ sortSign("surName") }}</th>
+      <th role="button" (click)="sortData('age')">Age {{ sortSign("age") }}</th>
+      <th role="button" (click)="sortData('email')"class="d-none d-lg-table-cell">Email {{ sortSign("email") }}</th>
+      <th role="button" (click)="sortData('education')" class="d-none d-lg-table-cell">Education {{ sortSign("education") }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (row of data; track row) {
+      <!-- το row ΔΕΝ είναι ο αρ. γραμμής αλλά τα data της γραμμής (row) -->
+      <!-- το dblclick αφορά το component-output-example μόνο -->
+      <tr class="align-middle" (dblclick)="onPersonClicked(row)">
+        <td>{{ row.givenName }}</td>
+        <td>{{ row.surName }}</td>
+        <td>{{ row.age }}</td>
+        <td class="d-none d-lg-table-cell">{{ row.email }}</td>
+        <td class="d-none d-lg-table-cell">{{ row.education }}</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<!-- //ΤΟ ΠΑΡΟΝ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΑΠΟ ΤA Simple-DataTable-Example & component-output-example & template-driven-form-example //
+//ΔΕΝ ΕΙΝΑΙ ΑΥΤΟΝΟΜΟ //
+// ΤΑ data ΔΕΝ ΠΕΡΝΑΝΕ ΕΔΩ ΑΛΛΑ ΣΤA simple-datatable-example & component-output-example & template-driven-form-example
+// ΕΔΩ ΔΗΛΩΝΟΥΜΕ ΤΗΝ ΜΟΡΦΗ ΤΩΝ data -->
