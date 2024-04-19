@@ -12,6 +12,9 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
 import { ForDirectiveExampleComponent } from './components/for-directive-example/for-directive-example.component';
 import { EventBindExampleComponent } from './components/event-bind-example/event-bind-example.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RestrictedContentExampleComponent } from './components/restricted-content-example/restricted-content-example.component';
+import { authGuard } from './shared/guards/auth.guard';
+import { UserLoginComponent } from './components/user-login/user-login.component';
 
 export const routes: Routes = [
   {
@@ -47,5 +50,14 @@ export const routes: Routes = [
     path: 'user-registration-example',
     component: UserRegistrationComponent,
   },
-  { path: '', component: WelcomeComponent },
+  {
+    path: 'restricted-content-example', 
+    component: RestrictedContentExampleComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'login',
+    component: UserLoginComponent
+  }, //εδώ μας κάνει redirect o authGuard (δες shared/guards/auth.guard.ts)
+  { path: '', component: WelcomeComponent},
 ];

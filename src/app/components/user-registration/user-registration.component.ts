@@ -24,7 +24,7 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrl: './user-registration.component.css',
 })
 export class UserRegistrationComponent {
-  userService = inject(UserService);
+  userService = inject(UserService); //= user.service.ts στον φάκελο services, εμείς το έχουμε φτιάξει
 
   registrationStatus: { success: boolean; message: string } = {
     success: false,
