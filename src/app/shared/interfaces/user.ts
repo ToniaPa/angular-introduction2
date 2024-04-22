@@ -14,7 +14,7 @@ export interface LoggedInUser { //εδώ κρατάω την πληροφορί�
   //ΔΕΣ και το user.service.ts, εκεί κρατώ την πληροφορία (δες user = signal())
   fullname: string;
   email: string;
-  //δες angular-introduction-python-backend -> src -> user_blueprin.py
+  //δες angular-introduction-python-backend -> src -> user_blueprint.py
   //συγκεκριμένα το @user.route("/login", methods=["POST"])
   //εκεί βλέπω τι μου επιστρέφει το backend στο Login του user
 }

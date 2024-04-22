@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   // TO ΠΑΡΟΝ ΤΟ χρησιμοποιούμε στο app.routes.ts (δες path: 'restricted-content-example, προσθέσαμε το canActivate:[authGuard])
 
-  if (userService.user()) {
+  if (userService.user()) {//= ελέγχει αν ο user έχει τα credentials που πρέπει
     return true; //true = επιτρέπει την πρόσβαση
   }
 

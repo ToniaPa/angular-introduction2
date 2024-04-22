@@ -1,12 +1,30 @@
 <h4>Reactive Form Example</h4>
 
+
 <div class="d-flex gap-4">
+  <!-- <h5>app-eperson-reactive-form</h5> -->
+
+  <!-- (person) = custom event, το έχουμε φτιάξει εμείς    
+       δες: eperson-reactive-form.ts -->
+  <!-- το person εκτελείται στο eperson-reactive-form και από εκεί στέλνει  data τα οποία είναι της μορφής EPerson (this.person.emit(value as EPerson);), -->
+  <!-- το angular μας δίνει το $event για να πάρουμε τα data του person (=custom event), δηλ τα παίρνουμε εδώ, η onPerson εκτελείται στο .ts του παρόντος-->
   <app-eperson-reactive-form
-    (person)="onPerson($event)"
+    (person)="onPerson($event)" 
   ></app-eperson-reactive-form>
 
+  <!-- [person] =
+  (property) PersonTableComponent.person: EPerson | Person -->
+  <!-- [data] =
+  (property) SimpleDatatableComponent.data: EPerson[] -->
+  
   <div class="d-flex flex-column gap-4">
+    <!-- τα currentPerson & persons γεμίζουν στο onPerson($event) παραπάνω -->
     <app-person-table [person]="currentPerson"></app-person-table>
     <app-simple-datatable [data]="persons"></app-simple-datatable>
   </div>
 </div>
+
+<!-- Angular has a different expression syntax, focusing on "[ ]" for property binding, and "( )" for event binding -->
+<!-- {{}} declares a template input variable (είναι μία μεταβλητή που έχει μία τιμή και μας έρχεται από κάπου αλλού, εκτός του παρόντος html (μας έρχεται από το .ts αρχείο του παρόντος, τουλάχιστον αυτό έχουμε κάνει στο μάθημα)) -->
+
+<!-- ακριβώς ίδια είναι η template-driven-form-example μόνο πως στο πρώτο div έχει το app-eperson-template-driven-form  αντί για το app-eperson-reactive-form που έχουμε εδώ, Η ΔΙΑΦΟΡΑ ΤΟΥΣ ΕΙΝΑΙ ότι το παρόν είναι φτιαγμένο με ReactiveFormsModule ενώ το -template είναι με FormsModule, ενώ και τα δύο είναι με Material design -->

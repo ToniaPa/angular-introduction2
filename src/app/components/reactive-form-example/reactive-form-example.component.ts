@@ -7,7 +7,7 @@ import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.c
 @Component({
   selector: 'app-reactive-form-example',
   standalone: true,
-  imports: [
+  imports: [ //εδώ βάζουμε όσα χρησιμοποιεί το παρον component
     EpersonReactiveFormComponent,
     PersonTableComponent,
     SimpleDatatableComponent,
@@ -15,12 +15,19 @@ import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.c
   templateUrl: './reactive-form-example.component.html',
   styleUrl: './reactive-form-example.component.css',
 })
+
+//στο angular framework κάθε component είναι μία class που την κάνει export το framework, αυτό γίνεται αυτόματα από το framework
 export class ReactiveFormExampleComponent {
-  currentPerson: EPerson;
-  persons: EPerson[] = [];
+  currentPerson: EPerson; //= shared/interfaces/person.ts, εμείς το φτιάξαμε
+  persons: EPerson[] = []; //= array of Eperson
 
   onPerson(person: EPerson) {
     this.currentPerson = person;
     this.persons.push(person);
+  //.html του παρόντος:
+  //   <app-eperson-reactive-form
+  //   (person)="onPerson($event)" 
+  // ></app-eperson-reactive-form>
+  // το angular μας δίνει το $event για να πάρουμε τα data του person (=custom event)
   }
 }

@@ -32,6 +32,7 @@ import { EPerson } from 'src/app/shared/interfaces/person';
 
 export class EpersonTemplateDrivenFormComponent {
   @Output() person = new EventEmitter<EPerson>(); //κάνουμε export την φόρμα με τα data που συμπληρώθηκαν 
+  
   onSubmit(value: any) {
     console.log(value as EPerson);
     this.person.emit(value as EPerson); //δες τον παραπάνω Emitter !

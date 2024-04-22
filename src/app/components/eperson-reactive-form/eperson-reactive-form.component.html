@@ -1,5 +1,14 @@
+
+<!-- φτιαγμένο με ReactiveFormsModule, είναι ίδια με την eperson-template-driven-example που όμως είναι φτιαγμένη με FormsModule -->
+
+<!-- τα παρακάτω είναι Material Design (του Angular): όλα όσα ξεκινούν με mat-->
+<!-- το formGroup και ό,τι ξεκινάει με form είναι ReactiveFormsModule (του Angular, και είναι άσχετο με το material design) -->
+
 <div class="d-flex flex-column">
+  <h5>Eperson-reactive-form:</h5>
   <h5>New Person Form</h5>
+  <!-- το "form" είναι ένα όνομα που το δίνουμε εμείς, θα μπορούσαμε να το πούμε vagelis, το form το έχουμε δηλώσει στο .ts του παρόντος -->
+  <!-- [formGroup] Tracks the FormGroup bound to this directive-->
   <form [formGroup]="form" class="d-flex flex-column">
     <mat-form-field>
       <mat-label> First Name </mat-label>
@@ -49,8 +58,10 @@
     mat-flat-button
     color="primary"
     [disabled]="form.invalid"
-    (click)="onSubmit(form.value)"
-  >
+    (click)="onSubmit(form.value)">
+  <!-- "form.invalid" = όταν αποτυγχάνει κάποιος validator από αυτούς που έχουμε βάλει -->
     Submit
   </button>
 </div>
+
+<!-- φτιαγμένο με ReactiveFormsModule, είναι ίδια με την eperson-template-driven-example που όμως είναι φτιαγμένη με FormsModule -->

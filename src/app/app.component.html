@@ -1,10 +1,15 @@
 <div class="container">
+  <!-- στην θέση του θα βάλουμε ένα component που να εμφανίζει το όνομα
+  του χρήστη που έχει κάνει Login (θα παίρνει τα στοιχεία από το signal 
+  (βρίσκεται στο user.service.ts)) -->
   <div class="d-flex flex-column gap-2">
-    <nav class="navbar navbar-dark bg-primary justify-content-between">
+    <!-- <nav class="navbar navbar-dark bg-primary justify-content-between">
       <a role="button" class="navbar-brand ms-3" routerLink=""
         >CF5 - Angular Introduction</a
       >
-    </nav>
+    </nav> -->
+    <app-navbar></app-navbar>
+
 
     <div class="d-flex flex-row gap-2">
       <app-list-group-menu class="w-25"></app-list-group-menu>

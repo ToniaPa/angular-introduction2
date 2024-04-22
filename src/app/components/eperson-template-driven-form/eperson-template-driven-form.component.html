@@ -1,9 +1,11 @@
 
+<!-- φτιαγμένο με FormsModule, είναι ίδια με την eperson-reactive-form που όμως είναι φτιαγμένη με ReactiveFormsModule -->
 <!-- 
 // ΤΟ ΠΑΡΟΝ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΑΠΟ ΤΟ template-driven-form-example
 // ΔΕΝ ΕΙΝΑΙ ΑΥΤΟΝΟΜΟ -->
 
 <div class="d-flex flex-column">
+  <h5>Eperson-template-driven-form:</h5>
   <h5>New Person Form</h5>
   <!-- Χρήση του `FormsModule` στον πίνακα imports του component (εμπλουτίζει τα templates με επιπλέον HTML markup ώστε να δημιουργούνται objects από τις φόρμες). -->
   <!-- `<form #form="ngForm">...</form>` ορίζει πως η HTML φόρμα δημιουργεί ένα αντικείμενο που είναι διαχειρίσιμο στα πλαίσια του template με τη μεταβλητή (template variable) `form`. -->
@@ -23,6 +25,7 @@
         name="givenName"
         #givenName="ngModel"
       />
+      <!-- hash symbol, # , to declare a template variable.  Templates are written in HTML. -->
       <!-- Με το `#givenName="ngModel"` δηλώνουμε τη μεταβλητή template με όνομα `givenName` που είναι αντικείμενο που μπορεί να εξεταστεί για την ορθότητά του με το `givenName.errors` και να χρησιμοποιηθεί για την υπο συνθήκη εμφάνιση επεξηγηματικού κειμένου για το ενδεχόμενο λάθος ορθότητας. -->
       @if (givenName.errors && givenName.errors["required"]) {
         <mat-error>First name is required</mat-error>
@@ -121,6 +124,7 @@
   </form>
 </div>
 
+<!-- φτιαγμένο με FormsModule, είναι ίδια με την eperson-reactive-form που όμως είναι φτιαγμένη με ReactiveFormsModule -->
 
 <!-- // ΤΟ ΠΑΡΟΝ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΑΠΟ ΤΟ template-driven-form-example
 // ΔΕΝ ΕΙΝΑΙ ΑΥΤΟΝΟΜΟ -->

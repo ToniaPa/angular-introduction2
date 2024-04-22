@@ -1,8 +1,8 @@
 
-<!-- //ΤΟ ΠΑΡΟΝ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΑΠΟ ΤA Simple-DataTable-Example & component-output-example & template-driven-form-example //
+<!-- //ΤΟ ΠΑΡΟΝ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΑΠΟ ΤA Simple-DataTable-Example & component-output-example & template-driven-form-example & reactive-form-example //
 //ΔΕΝ ΕΙΝΑΙ ΑΥΤΟΝΟΜΟ //
-// ΤΑ data ΔΕΝ ΠΕΡΝΑΝΕ ΕΔΩ ΑΛΛΑ ΣΤA simple-datatable-example & component-output-example & template-driven-form-example
-// ΕΔΩ ΔΗΛΩΝΟΥΜΕ ΤΗΝ ΜΟΡΦΗ ΤΩΝ data -->
+// ΤΑ data ΔΕΝ ΠΕΡΝΑΝΕ ΕΔΩ ΑΛΛΑ ΣΤA simple-datatable-example.ts & component-output-example.ts & template-driven-form-example.ts & reactive-form-example.ts
+// ΕΔΩ ΔΗΛΩΝΟΥΜΕ ΤΗΝ ΜΟΡΦΗ ΤΩΝ data ΔΗΛ ΤΟ ΠΩΣ ΕΜΦΑΝΙΖΟΝΤΑΙ -->
 
 <table class="table table-bordered table-striped text-wrap">
   <thead>
@@ -15,9 +15,11 @@
     </tr>
   </thead>
   <tbody>
+    <!-- τα data βρίσκονται εκεί από όπου καλείται το παρόν δηλ βρίσκονται στο component-output-example.ts ή στο reactive-form-example.ts -->
     @for (row of data; track row) {
-      <!-- το row ΔΕΝ είναι ο αρ. γραμμής αλλά τα data της γραμμής (row) -->
-      <!-- το dblclick αφορά το component-output-example μόνο -->
+      <!-- @Input() data: EPerson[]; δες το .ts του παρόντος -->
+      <!-- το row ΔΕΝ είναι ο αρ. γραμμής αλλά τα data της γραμμής row -->
+      <!-- το dblclick αφορά το component-output-example αλλά και το reactive-form-example (έχουμε βάλει το παρον στο τέλος του reactive-form-example.html) -->      
       <tr class="align-middle" (dblclick)="onPersonClicked(row)">
         <td>{{ row.givenName }}</td>
         <td>{{ row.surName }}</td>
@@ -29,7 +31,9 @@
   </tbody>
 </table>
 
-<!-- //ΤΟ ΠΑΡΟΝ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΑΠΟ ΤA Simple-DataTable-Example & component-output-example & template-driven-form-example //
+<!-- {{}} declares a template input variable (είναι μία μεταβλητή που έχει μία τιμή και μας έρχεται από κάπου αλλού, εκτός του παρόντος html (μας έρχεται από το .ts αρχείο του παρόντος, τουλάχιστον αυτό έχουμε κάνει στο μάθημα)) -->
+
+<!-- //ΤΟ ΠΑΡΟΝ ΧΡΗΣΙΜΟΠΟΙΕΙΤΑΙ ΑΠΟ ΤA Simple-DataTable-Example & component-output-example & template-driven-form-example & reactive-form-example & reactive-form-example//
 //ΔΕΝ ΕΙΝΑΙ ΑΥΤΟΝΟΜΟ //
-// ΤΑ data ΔΕΝ ΠΕΡΝΑΝΕ ΕΔΩ ΑΛΛΑ ΣΤA simple-datatable-example & component-output-example & template-driven-form-example
+// ΤΑ data ΔΕΝ ΠΕΡΝΑΝΕ ΕΔΩ ΑΛΛΑ ΣΤA simple-datatable-example & component-output-example & template-driven-form-example & reactive-form-example & reactive-form-example.ts
 // ΕΔΩ ΔΗΛΩΝΟΥΜΕ ΤΗΝ ΜΟΡΦΗ ΤΩΝ data -->
