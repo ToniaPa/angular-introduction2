@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RestrictedContentExampleComponent } from './components/restricted-content-example/restricted-content-example.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { UserLoginComponent } from './components/user-login/user-login.component';
+import { FunForNerdsComponent } from './components/fun-for-nerds/fun-for-nerds/fun-for-nerds.component';
 
 export const routes: Routes = [
   {
@@ -58,6 +59,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: UserLoginComponent
-  }, //εδώ μας κάνει redirect o authGuard (δες shared/guards/auth.guard.ts)
+  }, //εδώ μας κάνει redirect o authGuard (δες shared/guards/auth.guard.ts)   
+  {
+    path: 'fun-for-nerds',
+    component: FunForNerdsComponent
+  },
   { path: '', component: WelcomeComponent},
 ];
