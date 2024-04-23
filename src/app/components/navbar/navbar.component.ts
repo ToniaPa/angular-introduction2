@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
 
-  userService = inject(UserService); //o constructor θα εκτελεστεί μία μόνο φορά, μπορεί να είναι σε διάφορα σημεία ΑΛΛΑ ο constructor θα εκτελεστεί μία μόνο φορά, την πρώτη που θα βρει το inject και δεν θα έχει δημιουργηθεί, όλα τα άλλα Inject κοιτάνε το ήδη δημιουργημένο
+  userService = inject(UserService); //o constructor θα εκτελεστεί μία μόνο φορά, μπορεί να είναι σε διάφορα σημεία το inject(UserService); ΑΛΛΑ ο constructor θα εκτελεστεί μία μόνο φορά, την πρώτη που θα βρει το inject και δεν θα έχει δημιουργηθεί, όλα τα άλλα Inject κοιτάνε το ήδη δημιουργημένο
 
   user = this.userService.user; //= το signal του user.service.ts
 

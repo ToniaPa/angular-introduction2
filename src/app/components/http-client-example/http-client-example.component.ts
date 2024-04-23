@@ -38,12 +38,16 @@ export class HttpClientExampleComponent implements OnInit { // OnInit (interface
 
   // Observables provide a way to subscribe to and receive notifications when new data or events are emitted (=εμπέμπω, βγάζω φωνή), enabling you to react to changes in real-time.
 
+// The HTTP module uses observables to handle AJAX requests and responses
+// The Router and Forms modules use observables to listen for and respond to user-input events (οπως εδώ με το routerLink και το FormModule κλπ)
+
   refreshDadJoke() {
+    //στην getDadJoke είναι η HTTP get (δες src/app/shared/services/jokes.service')
     this.jokesService.getDadJoke().subscribe((data: DadJoke) => { //(data: DadJoke) = δηλώνουμε ότι τα data είναι data type: DadJoke = interface στο '../interfaces/jokes'
       console.log(data); //το βάζουμε οπωσδήποτε γιατί έτσι μονο βλέπουμε τι επιστρέφει το get από το συγκεκριμένο url -> έτσι είδαμε ότι επιστρέφει string
-      this.dadJoke = data.joke;
+      this.dadJoke = data.joke; //το {{ dadJoke }} εμφανίζουμε στο http-client-example.html
     });
-    // `subscribe` is not a regular operator, but a method that calls Observable's internal `subscribe` function. It defines what will be emitted by an Observable, and when it be will emitted. This means
+    // `subscribe` is not a regular operator, but a method that calls Observable's internal `subscribe` function. It defines what will be emitted (= εκμπέμπω) by an Observable, and when it be will emitted. This means
   // that calling `subscribe` is actually the moment when Observable starts its work, not when it is created, as it is often the thought.
   // * Apart from starting the execution of an Observable, this method allows you to listen for values that an Observable emits, as well as for when it completes or errors.
   }
@@ -53,13 +57,15 @@ export class HttpClientExampleComponent implements OnInit { // OnInit (interface
   //  * This means you can provide three functions as arguments to `subscribe`, where the first function is equivalent
   //  * of a `next` method, the second of an `error` method and the third of a `complete` method. Just as in case of an Observer,
   //  * if you do not need to listen for something, you can omit a function by passing `undefined` or `null`,
+  //ΔΕΣ user-login.ts (εδώ δεν χρειάζεται όλο αυτό γιατί δεν μας ενδιαφέρει )
+
 
   refreshChuckNorrisJoke() {
     this.jokesService
-      .getChuckNorrisJoke()
+      .getChuckNorrisJoke() //στην getChuckNorrisJoke είναι η HTTP get (δες src/app/shared/services/jokes.service')
       .subscribe((data: ChuckNorrisJoke) => { //(data: ChuckNorrisJoke) = δηλώνουμε ότι τα data είναι data type: ChuckNorrisJoke = interface στο '../interfaces/jokes'
         console.log(data); //το βάζουμε οπωσδήποτε γιατί έτσι μονο βλέπουμε τι επιστρέφει το get από το συγκεκριμένο url -> έτσι είδαμε ότι επιστρέφει string
-        this.chuckNorrisJoke = data.value;
+        this.chuckNorrisJoke = data.value; //το {{ chuckNorrisJoke }} εμφανίζουμε στο http-client-example.html
       });
   }
 } 

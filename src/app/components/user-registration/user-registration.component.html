@@ -55,6 +55,7 @@
         matInput
         type="password"
         formControlName="confirmPassword" />
+        <!-- τα  confirmPassword, passwordMismatch, password, email κλπ είναι όλα μεταβλητές στο user-registration.ts -->
       @if (form.get("confirmPassword").hasError("passwordMismatch")) {
         <mat-error>Passwords do not match</mat-error>
       } @else {

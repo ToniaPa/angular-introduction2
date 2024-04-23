@@ -27,8 +27,8 @@ export class UserRegistrationComponent {
   userService = inject(UserService); //= user.service.ts στον φάκελο services, εμείς το έχουμε φτιάξει
 
   registrationStatus: { success: boolean; message: string } = {
-    success: false,
-    message: 'Not attempted yet',
+    success: false, //initial value
+    message: 'Not attempted yet', //initial value
   };
 
   form = new FormGroup(
@@ -45,7 +45,7 @@ export class UserRegistrationComponent {
         Validators.minLength(4),
       ]),
     },
-    this.passwordConfirmValidator,
+    this.passwordConfirmValidator, //εδώ του δηλώνουμε δική μας function
   );
 
   passwordConfirmValidator(form: FormGroup) {
