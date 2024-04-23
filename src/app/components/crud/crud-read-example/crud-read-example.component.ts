@@ -5,7 +5,7 @@ import { CrudNavbarComponent } from '../crud-navbar/crud-navbar.component';
   selector: 'app-crud-read-example',
   standalone: true,
   imports: [
-    CrudNavbarComponent
+    CrudNavbarComponent,
   ],
   templateUrl: './crud-read-example.component.html',
   styleUrl: './crud-read-example.component.css'

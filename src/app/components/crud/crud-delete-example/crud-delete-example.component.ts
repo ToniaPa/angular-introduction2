@@ -5,7 +5,7 @@ import { CrudNavbarComponent } from '../crud-navbar/crud-navbar.component';
   selector: 'app-crud-delete-example',
   standalone: true,
   imports: [
-    CrudNavbarComponent
+    CrudNavbarComponent,
   ],
   templateUrl: './crud-delete-example.component.html',
   styleUrl: './crud-delete-example.component.css'
