@@ -59,9 +59,11 @@ router: Router = inject(Router);
     // This means that effects created within components are destroyed when the component is destroyed. The same goes for effects within directives, services, etc.
 
   }
-  //-τα παραπάνω είναι για το User Login
+  //-τα παραπάνω είναι για το User Login -//
 
-  //-τα παρακάτω είναι για το User Registration
+  //-τα παρακάτω είναι για το User Registration -//
+
+  // *** ΟΛΕΣ OI ΠΑΡΑΚΑΤΩ FUNCTIONS ΠΑΝΕ ΣΤΟ angular-introduction-python-backend->user_blueprint.py ***//
   
   // export interface User {
   //   givenName: string;
@@ -70,21 +72,28 @@ router: Router = inject(Router);
   //   password: string;
   // } από το ../interfaces/user'
   registerUser(user: User) {
+    console.log('inside registerUser of user.service.ts: ', user)
     return this.http.post<{ msg: string }>(`${API_URL}/register`, user);
+    //εδώ του στέλνουμε data, συγκεκριμένα τον user, με post
+    //αυτά τα data θα περάσουν ως json στο backend -> θα πάνε στο angular-introduction-python-backend->user_blueprint.py και θα εκτελέσουν την @user.route("/register", methods=["POST"]), εκεί έχει την εντολή data = data = request.get_json() το get_json() είναι ο user εδώ
+    //ΤΟ ΙΔΙΟ ΓΙΝΕΤΑΙ ΚΑΙ ΜΕ ΤΙΣ ΠΑΡΑΚΑΤΩ ΕΝΤΟΛΕΣ -> ΟΛΕΣ ΠΑΝΕ ΣΤΟ angular-introduction-python-backend->user_blueprint.py
   }
 
   check_duplicate_email(email: string) {
     return this.http.get<{ msg: string }>(
+      //εδώ καλεί την @user.route("/check_duplicate_email/<string:email>", methods=["GET"]) του user_blueprint.py που βρίσκεται στο angular-introduction-python-backend
       `${API_URL}/check_duplicate_email/${email}`,
     );
   }
 
   loginUser(credentials: Credentials) {
+    //εδώ καλεί την @user.route("/login", methods=["POST"]) του user_blueprint.py που βρίσκεται στο angular-introduction-python-backend
     return this.http.post<{ access_token: string }>(
-      `${API_URL}/login/`,
+      `${API_URL}/login/`, 
       credentials,
     );
   };
+  //-τελος της επικοινωνίας με το angular-introduction-python-backend->user_blueprint.py -//
 
   logoutUser() {
     this.user.set(null); // κάνουμε Null το signal

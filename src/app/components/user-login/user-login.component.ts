@@ -19,7 +19,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class UserLoginComponent {
     // login με:
-    // chfrag@aueb.gr
+    // p@aueb.gr
     // 1234
 
   userService = inject(UserService); //= user.service.ts στον φάκελο services, εμείς το έχουμε φτιάξει, στην πλευρά του user.service.ts κάνουμε @Injectable(...) => δηλώνουμε την σχέση του dependency injection ΚΑΙ ΣΤΙΣ ΔΥΟ ΠΛΕΥΡΕΣ      
@@ -45,7 +45,7 @@ export class UserLoginComponent {
           fullname: decodedTokenSubject.fullname,
           email: decodedTokenSubject.email
         });
-        this.router.navigate(['restricted-content-example']); //εδώ είμαστε στην περίπτωση που ο user έχει τα σωστά credentials και άρα γίνεται logged in και το επόμενο βήμα είναι να πάει στην οθόνη του restricted-content component
+        this.router.navigate(['restricted-content-example']); //εδώ είμαστε στην περίπτωση που ο user έχει τα σωστά credentials και άρα γίνεται logged in και το επόμενο βήμα είναι να πάει στην οθόνη του restricted-content component (έτσι το ορίζουμε εμείς)
       },
       error: (response) => {
         console.log('Login error', response);

@@ -48,10 +48,10 @@ export class UserRegistrationComponent {
     this.passwordConfirmValidator, //εδώ του δηλώνουμε δική μας function
   );
 
-  passwordConfirmValidator(form: FormGroup) {
+  passwordConfirmValidator(form: FormGroup) { //form.get χάρη στο FormGroup & η το ότι στέλνουμε τις μεταβλητές και τις λαμβάνουμε είναι χάρη στο ReactiveFormsModule
     if (form.get('password').value !== form.get('confirmPassword').value) {
       form.get('confirmPassword').setErrors({ passwordMismatch: true });
-      return { passwordMismatch: true };
+      return { passwordMismatch: true }; //passwordMismatch = custom error, δικό μας error, το οποίο θέλουμε να είναι object, θέλουμε να βγάλουμε μνμ στο html, το html παίρνει το passwordMismatch 
     }
     return {};
   }
@@ -59,17 +59,17 @@ export class UserRegistrationComponent {
   onSubmit(value: any) {
     console.log(value);
 
-    const user = this.form.value as User;
-    delete user['confirmPassword'];
+    const user = this.form.value as User; //type cast, όμως δεν κάνει 1:1 δηλ αν το this.form.value εχει παραπάνω πεδία από το User θα τα βάλει και αυτά
+    delete user['confirmPassword']; //ο user δεν έχει πεδίο confirmPassword, το confirmPassword είναι της φόρμας δηλ του html => το διαγράφουμε
 
-    this.userService.registerUser(user).subscribe({
-      next: (response) => {
-        console.log('User registered', response.msg);
+    this.userService.registerUser(user).subscribe({ //θα εκτελεστεί η registerUser(user: User) {...} του user.service.ts Η οποία στέλνει εντολή Post στο backend (δες τα σχόλια εκεί)
+      next: (response) => { //= αν δεν πάρω error
+        console.log('User registered: ', response.msg);
         this.registrationStatus = { success: true, message: response.msg };
       },
       error: (response) => {
         const message = response.error.msg;
-        console.log('Error registering user', message);
+        console.log('Error registering user: ', message);
         this.registrationStatus = { success: false, message };
       },
     });
