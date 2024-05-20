@@ -57,19 +57,23 @@ export class UserRegistrationComponent {
   }
 
   onSubmit(value: any) {
-    console.log(value);
+    console.log('User Registration, form data: ', value);
 
-    const user = this.form.value as User; //type cast, όμως δεν κάνει 1:1 δηλ αν το this.form.value εχει παραπάνω πεδία από το User θα τα βάλει και αυτά
+    const user = this.form.value as User; //type cast, όμως δεν κάνει 1:1 δηλ 
+    // αν το this.form.value εχει παραπάνω πεδία από το User θα τα βάλει και αυτά
+    console.log('User Registration, user: ', user);
     delete user['confirmPassword']; //ο user δεν έχει πεδίο confirmPassword, το confirmPassword είναι της φόρμας δηλ του html => το διαγράφουμε
+    console.log('User Registration, user after delete confirmPassword: ', user);
 
     this.userService.registerUser(user).subscribe({ //θα εκτελεστεί η registerUser(user: User) {...} του user.service.ts Η οποία στέλνει εντολή Post στο backend (δες τα σχόλια εκεί)
-      next: (response) => { //= αν δεν πάρω error
-        console.log('User registered: ', response.msg);
+      //εδώ έχω πάρει την απάντηση του backend:
+      next: (response) => { //= αν δεν πάρω error από το backend
+        console.log("user-registration.ts (registerUser) success (step 3): ", response.msg);
         this.registrationStatus = { success: true, message: response.msg };
       },
       error: (response) => {
         const message = response.error.msg;
-        console.log('Error registering user: ', message);
+        console.log("user-registration.ts (registerUser) error (step 3): ", message);
         this.registrationStatus = { success: false, message };
       },
     });
@@ -85,12 +89,12 @@ export class UserRegistrationComponent {
 
     this.userService.check_duplicate_email(email).subscribe({
       next: (response) => {
-        console.log(response.msg);
+        console.log("user-registration.ts (check_duplicate_email) success: ", response.msg);
         this.form.get('email').setErrors(null);
       },
       error: (response) => {
         const message = response.error.msg;
-        console.log(message);
+        console.log("user-registration.ts (check_duplicate_email) error: ", message);
         this.form.get('email').setErrors({ duplicateEmail: true });
       },
     });

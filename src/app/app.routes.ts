@@ -57,42 +57,46 @@ export const routes: Routes = [
     component: UserRegistrationComponent,
   },
   {
-    path: 'restricted-content-example', 
+    path: 'restricted-content-example',
     component: RestrictedContentExampleComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard], //δες auth.quard.ts στον φάκελο shared->guards
+    // canActivate = An array of CanActivateFn or DI tokens used to look up CanActivate() handlers, in order to determine if the current user is allowed to activate the component. By default, any user can activate.
+    // When using a function rather than DI tokens, the function can call inject to get any required dependencies. This inject call must be done in a synchronous context.
   },
   {
     path: 'login',
-    component: UserLoginComponent
-  }, //εδώ μας κάνει redirect o authGuard (δες shared/guards/auth.guard.ts)   
+    component: UserLoginComponent,
+  }, //εδώ μας κάνει redirect o authGuard (δες shared/guards/auth.guard.ts)
   {
     path: 'fun-for-nerds',
-    component: FunForNerdsComponent
+    component: FunForNerdsComponent,
   },
   {
     path: 'crud-example',
     component: CrudDashboardComponent,
-    // canActivate: [authGuard], //Κανονικά το έχουμε, πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
+    canActivate: [authGuard], //πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
+    //δες auth.quard.ts στον φάκελο shared->guards
   },
   {
     path: 'crud-example/create',
     component: CrudCreateExampleComponent,
-    // canActivate: [authGuard], //Κανονικά το έχουμε, πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
+    canActivate: [authGuard], //πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
   },
   {
     path: 'crud-example/read',
     component: CrudReadExampleComponent,
-    // canActivate: [authGuard], //Κανονικά το έχουμε, πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
+    canActivate: [authGuard], //πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
   },
   {
     path: 'crud-example/update',
     component: CrudUpdateExampleComponent,
-    // canActivate: [authGuard], //Κανονικά το έχουμε, πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
+    canActivate: [authGuard], //πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
   },
   {
     path: 'crud-example/delete',
     component: CrudDeleteExampleComponent,
-    // canActivate: [authGuard], //Κανονικά το έχουμε, πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
+    canActivate: [authGuard], //πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
+    //δες auth.quard.ts στον φάκελο shared->guards
   },
-  { path: '', component: WelcomeComponent},
+  { path: '', component: WelcomeComponent },
 ];

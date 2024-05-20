@@ -5,7 +5,7 @@ export interface User {
   password: string;
 }
 
-export interface Credentials {
+export interface Credentials { //εδώ ορίζουμε ποιά είναι τα διεπιστευτήρια ενός χρήστη, από αυτά εξαρτάται εάν θα γίνει logged in ή όχι => εξαρτάται από το αν θα βρεθεί στην ΒΔ χρήστης με το τάδε email και password, εάν ναι τότε τον κάνουμε Logged in, αλλιώς όχι
   email: string;
   password: string;
 }
