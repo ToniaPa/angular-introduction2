@@ -5,7 +5,11 @@ import { Credentials, LoggedInUser, User } from '../interfaces/user';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 
-const API_URL = `${environment.apiURL}/user`; //δες src/environments/environment.ts
+
+// *** O USER ΘΑ ΕΡΧΕΤΑΙ ΑΠΟ ΜΙΑ ΦΟΡΜΑ ΠΟΥ ΦΤΙΑΞΑΜΕ, που είναι το user-registration component *** //
+
+const API_URL = `${environment.apiURL}/user`; //εδώ ορίζω το Link
+//δες src/environments/environment.ts
 
 @Injectable({ //εδώ ΔΕΝ έχουμε inject() αλλά @Injectable => το παρόν μπορεί να γίνει Inject σε άλλη κλάση (έτσι θα φτιάξουμε dependency injection στην άλλη κλάση)
   providedIn: 'root', //του λέμε ότι είναι @Injectable σε όλο το app => μπορούν όλες οι κλάσεις της app μας να το κάνουν inject
