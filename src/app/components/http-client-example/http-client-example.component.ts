@@ -46,6 +46,7 @@ export class HttpClientExampleComponent implements OnInit { // OnInit (interface
     this.jokesService.getDadJoke().subscribe((data: DadJoke) => { //(data: DadJoke) = δηλώνουμε ότι τα data είναι data type: DadJoke = interface στο '../interfaces/jokes'
       console.log(data); //το βάζουμε οπωσδήποτε γιατί έτσι μονο βλέπουμε τι επιστρέφει το get από το συγκεκριμένο url -> έτσι είδαμε ότι επιστρέφει string
       this.dadJoke = data.joke; //το {{ dadJoke }} εμφανίζουμε στο http-client-example.html
+         // στην Κονσόλα είδαμε ότι το link του DadJoke επιστρέφει το κείμενο του joke στο key 'joke' (στην Κονσόλα βλέπω το JSON που επιστρέφει)
     });
     // `subscribe` is not a regular operator, but a method that calls Observable's internal `subscribe` function. It defines what will be emitted (= εκμπέμπω) by an Observable, and when it be will emitted. This means
   // that calling `subscribe` is actually the moment when Observable starts its work, not when it is created, as it is often the thought.
@@ -66,6 +67,7 @@ export class HttpClientExampleComponent implements OnInit { // OnInit (interface
       .subscribe((data: ChuckNorrisJoke) => { //(data: ChuckNorrisJoke) = δηλώνουμε ότι τα data είναι data type: ChuckNorrisJoke = interface στο '../interfaces/jokes'
         console.log(data); //το βάζουμε οπωσδήποτε γιατί έτσι μονο βλέπουμε τι επιστρέφει το get από το συγκεκριμένο url -> έτσι είδαμε ότι επιστρέφει string
         this.chuckNorrisJoke = data.value; //το {{ chuckNorrisJoke }} εμφανίζουμε στο http-client-example.html
+        // στην Κονσόλα είδαμε ότι το link του ChuckNorrisJoke επιστρέφει το κείμενο του joke στο key 'value' (στην Κονσόλα βλέπω το JSON που επιστρέφει)
       });
   }
 } 
