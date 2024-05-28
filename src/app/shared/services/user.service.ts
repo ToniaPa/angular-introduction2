@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 // *** O USER ΘΑ ΕΡΧΕΤΑΙ ΑΠΟ ΜΙΑ ΦΟΡΜΑ ΠΟΥ ΦΤΙΑΞΑΜΕ, που είναι το user-registration component *** //
 
 const API_URL = `${environment.apiURL}/user`; //εδώ ορίζω το Link
-//δες src/environments/environment.ts
+//δες apiURL -> src/environments/environment.ts
 
 @Injectable({ //εδώ ΔΕΝ έχουμε inject() αλλά @Injectable => το παρόν μπορεί να γίνει Inject σε άλλη κλάση (έτσι θα φτιάξουμε dependency injection στην άλλη κλάση)
   providedIn: 'root', //του λέμε ότι είναι @Injectable σε όλο το app => μπορούν όλες οι κλάσεις της app μας να το κάνουν inject
@@ -32,7 +32,9 @@ export class UserService {
     // username: tonia@aueb.gr, iraklis@aueb.gr, adonis@aueb.gr
     // password: 1234
 
-    const access_token = localStorage.getItem('access_token'); //localStorage = μας το δίνει η angular -> There are essentially three ways to store information for usage in your Angular app: as variable, as local storage, or on a database. Local Storage in Angular JS allows the developers to store some data in the browser itself to access it almost instantly without any HTTP request. Local Storage in the Website allows the users to save the data in the form of key-value pairs. -> Where is localStorage stored? In Google Chrome, web storage data is saved in an SQLite file in a subfolder in the user's profile. The subfolder is located at \AppData\Local\Google\Chrome\User Data\Default\Local Storage on Windows machines and ~/Library/Application Support/Google/Chrome/Default/Local Storage on macOS.
+    const access_token = localStorage.getItem('access_token'); //localStorage = μας το δίνει η angular -> There are essentially three ways to store information for usage in your Angular app: as variable, as local storage, or on a database. Local Storage in Angular JS allows the developers to store some data in the browser itself to access it almost instantly without any HTTP request. Local Storage in the Website allows the users to save the data in the form of key-value pairs. -> Where is localStorage stored? In Google Chrome, web storage data is saved in an SQLite file in a subfolder in the user's profile. The subfolder is located at C:\Users\papad\AppData\Local\Google\Chrome\User Data\Default\Local Storage on Windows machines 
+    // C:\Users\papad\AppData\Local\Google\Chrome\User Data\Default\Cache
+    // and ~/Library/Application Support/Google/Chrome/Default/Local Storage on macOS.
     if(access_token) { //= αν υπάρχει (έχει μέσα του κωδικοποιημένη την πληροφορία για το ποιος είναι ο User που έχει access)
       const decodedTokenSubject = jwtDecode(access_token).sub as unknown as LoggedInUser; //.sub εδώ μέσα είναι ό,τι έχει το access_token, με τα as κάνουμε type cast
       this.user.set({ //EΔΩ ΕΙΝΑΙ Η Setter function ΤΟΥ SIGNAL (γρ. 17), με SET we change it directly, Υπάρχει και το update to compute a new value from the previous one: this.user.update(value => value + 1);
@@ -42,7 +44,7 @@ export class UserService {
     }
 
     //διαβάζουμε το παραπάνω signal: το EFFECT έχει πρόσβαση σε όλα τα signals
-    //το βάζουμε στον constructor (υπάρχει λόγος, διάβασε παρακάτω, μετά το τέλος του effect). Στο help της angular γραφει ότι τα EFFECT δεν πολυχρησιμοποιούνται, εκτός εξαιρέσεων. μία είναι το logging (όπως εδώ).
+    //το βάζουμε στον constructor (υπάρχει λόγος, διάβασε παρακάτω, μετά το τέλος του effect). Στο help της angular γραφει ότι τα EFFECT δεν πολυχρησιμοποιούνται, εκτός εξαιρέσεων. μία εκαίρεση είναι το logging (όπως εδώ).
     // Signals are useful because they can notify interested consumers when they change. An EFFECT is an operation that runs whenever one or more signal values change. You can create an EFFECT with the effect function:
     // effect(() => {
     //   ...
@@ -77,7 +79,9 @@ export class UserService {
     console.log(`'user.service.ts (registerUser) url (step 1): ${API_URL}/register`);
     return this.http.post<{ msg: string }>(`${API_URL}/register`, user);
     //εδώ του στέλνουμε data, συγκεκριμένα τον user, με post
-    //αυτά τα data θα περάσουν ως json στο backend -> θα πάνε στο angular-introduction-python-backend->user_blueprint.py και θα εκτελέσουν την @user.route("/register", methods=["POST"]), εκεί έχει την εντολή data = data = request.get_json() το get_json() είναι ο user εδώ
+    //αυτά τα data θα περάσουν ως json στο backend -> θα πάνε στο angular-introduction-python-backend->user_blueprint.py και θα εκτελέσουν την @user.route("/register", methods=["POST"]), εκεί έχει την εντολή: 
+    // data = request.get_json(),
+    //     το get_json() είναι ο user που του περνάμε εδώ
     //ΤΟ ΙΔΙΟ ΓΙΝΕΤΑΙ ΚΑΙ ΜΕ ΤΙΣ ΠΑΡΑΚΑΤΩ ΕΝΤΟΛΕΣ -> ΟΛΕΣ ΠΑΝΕ ΣΤΟ angular-introduction-python-backend->user_blueprint.py
 
     //***ΔΕΝ ΕΧΩ ΚΑΤΑΛΑΒΕΙ ΠΩΣ ΤΟ ΠΑΡΟΝ ΚΑΛΕΙ ΤΟ user_blueprint.py***// 

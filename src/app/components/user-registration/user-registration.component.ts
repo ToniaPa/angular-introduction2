@@ -45,15 +45,16 @@ export class UserRegistrationComponent {
         Validators.minLength(4),
       ]),
     },
-    this.passwordConfirmValidator, //εδώ του δηλώνουμε δική μας function
+    this.passwordConfirmValidator, //εδώ δηλώνουμε δική μας function
   );
 
-  passwordConfirmValidator(form: FormGroup) { //form.get χάρη στο FormGroup & η το ότι στέλνουμε τις μεταβλητές και τις λαμβάνουμε είναι χάρη στο ReactiveFormsModule
+  passwordConfirmValidator(form: FormGroup) { //εδώ περνάει όλη η φόρμα 
+    //form.get χάρη στο FormGroup & η το ότι στέλνουμε τις μεταβλητές και τις λαμβάνουμε είναι χάρη στο ReactiveFormsModule
     if (form.get('password').value !== form.get('confirmPassword').value) {
       form.get('confirmPassword').setErrors({ passwordMismatch: true });
       return { passwordMismatch: true }; //passwordMismatch = custom error, δικό μας error, το οποίο θέλουμε να είναι object, θέλουμε να βγάλουμε μνμ στο html, το html παίρνει το passwordMismatch 
     }
-    return {};
+    return {}; //κενό object = είναι οκ το validation
   }
 
   onSubmit(value: any) {
