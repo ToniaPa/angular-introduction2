@@ -26,6 +26,8 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class UserRegistrationComponent {
   userService = inject(UserService); //= user.service.ts στον φάκελο services, εμείς το έχουμε φτιάξει
 
+  //registrationStatus = το φτιάχνουμε για να αντικατοπτρίσω την επικοινωνία με το backend όσον αφορά την εγγραφή ενός User:
+  //δες την onSumbit και registerAnotherUser KAI το user-registration.html γιατί το βάζει ΚΑΙ ΕΚΕΙ ώστε όταν το registration είναι επιτυχημένο να βγαίνει μνμ γι'αυτό, όταν είναι λάθος να βγαίνει το error message Και όταν δεν έχει γίνει καμία προσπάθεια εγγραφής να εμφανίζεται η form
   registrationStatus: { success: boolean; message: string } = {
     success: false, //initial value
     message: 'Not attempted yet', //initial value
@@ -57,25 +59,28 @@ export class UserRegistrationComponent {
     return {}; //κενό object = είναι οκ το validation
   }
 
-  onSubmit(value: any) {
+  onSubmit(value: any) { // value: any = θα πάρει τα data της φόρμας, στο html έχουμε γράψει: (click)="onSubmit(form.value)"
     console.log('User Registration, form data: ', value);
 
+    //object User:
     const user = this.form.value as User; //type cast, όμως δεν κάνει 1:1 δηλ 
     // αν το this.form.value εχει παραπάνω πεδία από το User θα τα βάλει και αυτά
     console.log('User Registration, user: ', user);
     delete user['confirmPassword']; //ο user δεν έχει πεδίο confirmPassword, το confirmPassword είναι της φόρμας δηλ του html => το διαγράφουμε
     console.log('User Registration, user after delete confirmPassword: ', user);
 
-    this.userService.registerUser(user).subscribe({ //θα εκτελεστεί η registerUser(user: User) {...} του user.service.ts Η οποία στέλνει εντολή Post στο backend (δες τα σχόλια εκεί)
+    this.userService.registerUser(user).subscribe({ //θα εκτελεστεί η registerUser(user: User) {...} του user.service.ts Η οποία στέλνει εντολή Post στο backend (δες τα σχόλια εκεί), αφού εκτελεστεί επανέρχεται στο σημείο αυτό
       //εδώ έχω πάρει την απάντηση του backend:
-      next: (response) => { //= αν δεν πάρω error από το backend
+      next: (response) => { //next = αν δεν πάρω error από το backend
         console.log("user-registration.ts (registerUser) success (step 3): ", response.msg);
         this.registrationStatus = { success: true, message: response.msg };
+        // το registrationStatus το φτιάξαμε εμείς (δες επάνω)
       },
       error: (response) => {
         const message = response.error.msg;
         console.log("user-registration.ts (registerUser) error (step 3): ", message);
-        this.registrationStatus = { success: false, message };
+        this.registrationStatus = { success: false, message }; //εδώ το message σκέτο είναι το ίδιο με το να γράψω message: message
+        // το registrationStatus το φτιάξαμε εμείς (δες επάνω)
       },
     });
   }

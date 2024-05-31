@@ -16,7 +16,8 @@ const API_URL = `${environment.apiURL}/user`; //εδώ ορίζω το Link
 })
 
 export class UserService {
-  http: HttpClient = inject(HttpClient); //http: HttpClient του λέμε ότι η μεταβλητή μας http είναι data type HttpClient (= class)
+  http: HttpClient = inject(HttpClient); //εγώ είμαι ο HttpClient, εγώ ζητάω υπηρεσίες από έναν server
+  //http: HttpClient του λέμε ότι η μεταβλητή μας http είναι data type HttpClient (= class)
 
   user = signal<LoggedInUser | null>(null) //signal =  εδώ ΟΡΙΖΟΥΜΕ ένα signal, μου το δίνει το angular framework, & του λέμε ότι θα γίνει null μετά που θα βάλουμε το username & password (= interface LoggedInUser) => έτσι μηδενίζονται όλα τα πεδία μετά το Submit (=> δεν φαίνονται οι τιμές τους)
   // *** --> A signal's value is always read through a getter function, which allows Angular to track where the signal is used -> Signals are getter functions - calling them reads their value => ΔΗΛΑΔΗ ΕΝ ΠΡΟΚΕΙΜΕΝΩ, ΓΡΑΦΟΝΤΑΣ ΚΑΠΟΥ ΣΤΟΝ ΚΩΔΙΚΑ this.user() ΟΥΣΙΑΣΤΙΚΑ ΓΡΑΦΟΥΜΕ ΤΗΝ Getter function ΚΑΙ ΠΑΙΡΝΟΥΜΕ ΤΗΝ ΤΙΜΗ ΤΟΥ SIGNAL (σημ.: η user() έχει παρενθέσεις)***//
@@ -51,7 +52,7 @@ export class UserService {
     // });
     // Effects always execute asynchronously, during the change detection process
     effect(() => { //εδώ είμαστε μέσα στον constructor 
-      if (this.user()) {//= διαβάζουμε το signal user καλώντας το σαν function!, έχει παρενθέσεις => εδώ είναι η Getter function ΤΟΥ SIGNAL (γρ. 17)
+      if (this.user()) {//= διαβάζουμε το signal user καλώντας το σαν function!, έχει παρενθέσεις => εδώ είναι η Getter function ΤΟΥ SIGNAL (δες γρ. 17)
         console.log('User Logged In: ', this.user().fullname)
       } else {
         console.log('No user Logged In')
@@ -77,7 +78,8 @@ export class UserService {
   registerUser(user: User) {
     console.log('user.service.ts (registerUser) στοιχεία του user (step 1): ', user)
     console.log(`'user.service.ts (registerUser) url (step 1): ${API_URL}/register`);
-    return this.http.post<{ msg: string }>(`${API_URL}/register`, user);
+    return this.http.post<{ msg: string }>(`${API_URL}/register`, user); //κάνουμε return! για να πάρουμε το response, την απάντηση από τον server
+    
     //εδώ του στέλνουμε data, συγκεκριμένα τον user, με post
     //αυτά τα data θα περάσουν ως json στο backend -> θα πάνε στο angular-introduction-python-backend->user_blueprint.py και θα εκτελέσουν την @user.route("/register", methods=["POST"]), εκεί έχει την εντολή: 
     // data = request.get_json(),
@@ -113,9 +115,11 @@ export class UserService {
 
   logoutUser() {
     this.user.set(null); // κάνουμε Null το signal
-    //το signal θέλει setter
+    //το signal θέλει setter, ο user είναι signal
     localStorage.removeItem('access_token');
-    this.router.navigate(['login']); //μπορούμε να το βάλουμε χωρίς /login  (χωρίς το: /) γιατί θα ψάξει το όνομα και μετά θα το βάλει το angular σωστά (θα προσθέσει το /), αυτό γίνεται γιατί υπάρχουν path με πολλά / συνεχόμενα π.χ. //, έτσι τα πράγματα γίνονται εύκολα (έχει φροντίσει το angular)
+    //ο router είναι ένα servce (το δίνει η angular)
+// , τα services τα κάνουμε inject6yyyyyyyy
+    this.router.navigate(['login']); //μπορούμε να το βάλουμε χωρίς /login  (χωρίς το: /) γιατί θα ψάξει το όνομα και μετά θα το βάλει το angular σωστά (θα προσθέσει το /), αυτό γίνεται γιατί υπάρχουν path με πολλά / συνεχόμενα π.χ. //, αλλά έτσι τα πράγματα γίνονται εύκολα (έχει φροντίσει το angular, αυτή το κάνει αυτό)
   }
 
 }

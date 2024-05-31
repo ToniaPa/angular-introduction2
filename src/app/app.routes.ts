@@ -61,7 +61,7 @@ export const routes: Routes = [
     component: RestrictedContentExampleComponent,
     canActivate: [authGuard], //δες auth.quard.ts στον φάκελο shared->guards
     // canActivate = An array of CanActivateFn or DI tokens used to look up CanActivate() handlers, in order to determine if the current user is allowed to activate the component. By default, any user can activate.
-    // When using a function rather than DI tokens, the function can call inject to get any required dependencies. This inject call must be done in a synchronous context.
+    // When using a function rather than DI tokens, the function can call inject to get any required dependencies. This inject call must be done in a synchronous context. -> Τι μας λέει εδώ? ότι έχουμε [] επειδή μπορούμε να βάλουμε όσους guards Θέλουμε, οι οποίοι εκτελούνται synchronously, συνεπώς για να πάει στον επόμενο πρέπει να εκτελεστεί επιτυχώς ο προηγούμενος
   },
   {
     path: 'login',
@@ -95,7 +95,7 @@ export const routes: Routes = [
   {
     path: 'crud-example/delete',
     component: CrudDeleteExampleComponent,
-    canActivate: [authGuard], //πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή είναι η λογική της εφαρμογής)
+    canActivate: [authGuard], //πρώτα κάνουμε login και μετά μπαίνουμε στην CRUD οθόνη (αυτή θέλουμε να είναι η λογική της εφαρμογής), εδώ του λέμε ότι το συγκεκριμένο path ΔΕΝ ΕΙΝΑΙ ΑΜΕΣΑ ΔΙΑΘΕΣΙΜΟ (στον οποιοδήποτε)
     //δες auth.quard.ts στον φάκελο shared->guards
   },
   { path: '', component: WelcomeComponent },

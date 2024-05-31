@@ -1,16 +1,28 @@
 
 <!-- bootstrap παντού ! -->
 <div class="list-group">
-  <!-- menu =  έτσι έχουμε ονομάσει το μενού μας στο list-group-menu.component.ts -->
-  <!-- track = Keyword to control how the for loop compares items in the list to compute updates. -->
-  <!-- entry = έτσι το γράφουμε εμείς, μπορούμε να γράψουμε κάτι άλλο π.χ. item -->
+ 
   <!-- routerLink = When applied to an element in a template, makes that element a link that initiates navigation to a route. Navigation opens one or more routed components in one or more <router-outlet> locations on the page. 
     Given a route configuration [{ path: 'user/:name', component: UserCmp }], the following creates a static link to the route: 
     <a routerLink="/user/bob">link to user component</a>-->
     <!-- [routerLinkActive]="['active']" -> highlights the associated link -->
-  @for (entry of menu; track entry) { 
+  
     <!-- bootstrap κλάσεις: -->
-    <a class="list-group-item list-group-item-action text-truncate"
+    <!-- RouterLink.routerLink δηλ ο RouterLink έχει property: routerLink που είναι array-->
+    <!--  [routerLinkActive]="['active']" εδώ προσθέτουμε την class 'active' σε όλα τα menu entry, ΠΡΕΠΕΙ να έχει μπει ΚΑΙ το routerLink αλλιώς η class active δεν θα δουλέψει -->
+    <!-- RouterLinkActive:
+Tracks whether the linked route of an element is currently active, and allows you to specify one or more CSS classes to add to the element when the linked route is active. -->
+<!-- Παράδειγμα: <a routerLink="/user/bob" routerLinkActive="active-link">Bob</a>
+Whenever the URL is either '/user' or '/user/bob', the "active-link" class is added to the anchor tag. If the URL changes, the class is removed. -->
+<!-- τα [] είναι σύνταξη της angular, In Angular, the simplest binding is property binding. It uses `[ ]` brackets to get the job done. It is a one-way binding from the component to the template (=a view whose purpose is to display data and update it when an event occurs. ). -->
+<!-- [routerLinkActive]="['active'] οι αγκύλες στην δεξιά πλευρά δηλώνουν array -> μπορούμε να βάλουμε περισσότερες από μία κλάσεις -->
+
+ <!-- menu =  έτσι έχουμε ονομάσει το μενού μας στο list-group-menu.component.ts -->
+  <!-- track = Keyword to control how the for loop compares items in the list to compute updates. -->
+  <!-- entry = έτσι το γράφουμε εμείς, μπορούμε να γράψουμε κάτι άλλο π.χ. item -->
+  
+  @for (entry of menu; track entry) {     
+  <a class="list-group-item list-group-item-action text-truncate"
         [routerLink]="entry.routerLink"
         [routerLinkActive]="['active']" 
     > {{ entry.text }} </a>

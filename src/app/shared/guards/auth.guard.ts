@@ -7,15 +7,15 @@ export const authGuard: CanActivateFn = (route, state) => { //έτσι δηλώ�
 
   //χρησιμοποιούμε το userService για να δει αν κάποιος είναι logged in
   const userService = inject(UserService); //= user.service.ts στον φάκελο services, εμείς το έχουμε φτιάξει
-  const router = inject(Router); //= angular
+  const router = inject(Router); //= angular Router
 
   // TO ΠΑΡΟΝ ΤΟ χρησιμοποιούμε στο app.routes.ts (δες path: 'restricted-content-example, προσθέσαμε το canActivate:[authGuard])
 
-  if (userService.user()) { //= getter του signal το οποίο είναι στην user.service.ts (γρ.17: user = signal<LoggedInUser | null>(null)) -> εδώ ελέγχει εάν έχει τιμή και δεν είναι Null
+  if (userService.user()) { //= getter του signal το οποίο είναι στην user.service.ts (γρ.17: user = signal<LoggedInUser | null>(null)) -> εδώ ελέγχουμε εάν έχει τιμή και δεν είναι Null και
     //= ελέγχει αν ο user έχει τα credentials που πρέπει
     return true; //true = επιτρέπει την πρόσβαση
   }
 
-  return router.navigate(['login']); //= false το παραπάνω if -> εδώ κάνουμε redirect στο 'login' το οποίο στο app.routes.ts είναι:     path: 'login',
+  return router.navigate(['login']); //= false του παραπάνω if -> εδώ κάνουμε redirect στο 'login' το οποίο στο app.routes.ts είναι:     path: 'login',
   //component: UserLoginComponent δηλ κάνουμε redirect στο UserLoginComponent
 };
