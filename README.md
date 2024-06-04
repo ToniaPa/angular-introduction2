@@ -912,7 +912,7 @@ export interface User {
   password: string;
 }
 Δημιουργία του UserService με την εντολή:
-
+ 
 ng generate service shared/services/user
 Η μέθοδος registerUser αποστέλλει στο backend τα πλήρη δεδομένα που αφορούν στην εγγραφή ενός νέου χρήστη
 Η μέθοδος check_duplicate_email ρωτά το backend αν το email που λαμβάνει σαν όρισμα χρησιμοποιείται ήδη σε κάποια εγγραφή στη βάση.
